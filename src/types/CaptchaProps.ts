@@ -5,7 +5,7 @@ export interface CaptchaProps {
   /**
    * Callback function triggered when CAPTCHA validation changes.
    */
-  onChange: (isValid: boolean) => void;
+  onChange: (_isValid: boolean) => void;
 
   /**
    * Number of characters in the CAPTCHA code.

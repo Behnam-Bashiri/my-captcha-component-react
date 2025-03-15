@@ -24,9 +24,9 @@ const App = () => {
   return (
     <div>
       <Captcha
-        length={6}
-        theme="dark"
-        onVerify={(isValid) => console.log(isValid)}
+        charCount={6}
+        backgroundColor="#f3f4f6"
+        onChange={(isValid) => console.log(isValid)}
       />
     </div>
   );
@@ -41,30 +41,50 @@ export default App;
 
 #### Properties
 
-| Name       | Type                         | Default   | Description                                       |
-| ---------- | ---------------------------- | --------- | ------------------------------------------------- |
-| `length`   | `number`                     | `6`       | Number of characters in the captcha               |
-| `theme`    | `'light' \| 'dark'`          | `'light'` | Captcha theme setting                             |
-| `onVerify` | `(isValid: boolean) => void` | -         | Function to check if the entered value is correct |
+| Name              | Type                         | Default                                                            | Description                                        |
+| ----------------- | ---------------------------- | ------------------------------------------------------------------ | -------------------------------------------------- |
+| `onChange`        | `(isValid: boolean) => void` | **Required**                                                       | Function triggered when CAPTCHA validation changes |
+| `charCount`       | `number`                     | `6`                                                                | Number of characters in the CAPTCHA code           |
+| `caseSensitive`   | `boolean`                    | `false`                                                            | Whether CAPTCHA validation is case-sensitive       |
+| `chars`           | `string`                     | `"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"` | Characters to use for generating the CAPTCHA code  |
+| `backgroundColor` | `string`                     | `"#f3f4f6"`                                                        | Background color of the CAPTCHA canvas             |
+| `noiseDensity`    | `number`                     | `100`                                                              | Density of noise dots on the canvas                |
+| `lineCount`       | `number`                     | `5`                                                                | Number of random lines drawn on the canvas         |
+| `font`            | `string`                     | `"Arial"`                                                          | Font family for the CAPTCHA text                   |
+| `canvasWidth`     | `number`                     | `220`                                                              | Width of the CAPTCHA canvas                        |
+| `canvasHeight`    | `number`                     | `50`                                                               | Height of the CAPTCHA canvas                       |
+| `padding`         | `number`                     | `10`                                                               | Padding around the CAPTCHA text                    |
 
 #### Examples
 
-##### 1. Customizing the captcha length
+##### 1. Customizing the CAPTCHA length
 
 ```tsx
-<Captcha length={4} onVerify={(isValid) => console.log(isValid)} />
+<Captcha charCount={4} onChange={(isValid) => console.log(isValid)} />
 ```
 
-##### 2. Changing the theme to dark mode
+##### 2. Changing the background color
 
 ```tsx
-<Captcha theme="dark" />
+<Captcha backgroundColor="#000000" />
 ```
 
-##### 3. Handling user input validation
+##### 3. Enabling case-sensitive validation
 
 ```tsx
-<Captcha onVerify={(isValid) => alert(isValid ? "Correct!" : "Wrong!")} />
+<Captcha caseSensitive={true} />
+```
+
+##### 4. Adjusting noise density and lines
+
+```tsx
+<Captcha noiseDensity={200} lineCount={10} />
+```
+
+##### 5. Customizing the font and padding
+
+```tsx
+<Captcha font="Courier New" padding={20} />
 ```
 
 ---
@@ -134,9 +154,9 @@ const App = () => {
   return (
     <div>
       <Captcha
-        length={6}
-        theme="dark"
-        onVerify={(isValid) => console.log(isValid)}
+        charCount={6}
+        backgroundColor="#f3f4f6"
+        onChange={(isValid) => console.log(isValid)}
       />
     </div>
   );
@@ -151,30 +171,50 @@ export default App;
 
 #### پراپرتی‌ها
 
-| نام        | نوع                          | مقدار پیش‌فرض | توضیحات                                              |
-| ---------- | ---------------------------- | ------------- | ---------------------------------------------------- |
-| `length`   | `number`                     | `6`           | تعداد کاراکترهای کپچا                                |
-| `theme`    | `'light' \| 'dark'`          | `'light'`     | تغییر تم کپچا                                        |
-| `onVerify` | `(isValid: boolean) => void` | -             | تابعی که بررسی می‌کند مقدار وارد شده صحیح است یا خیر |
+| نام               | نوع                          | مقدار پیش‌فرض                                                      | توضیحات                                       |
+| ----------------- | ---------------------------- | ------------------------------------------------------------------ | --------------------------------------------- |
+| `onChange`        | `(isValid: boolean) => void` | **ضروری**                                                          | تابعی که هنگام تغییر اعتبار کپچا اجرا می‌شود  |
+| `charCount`       | `number`                     | `6`                                                                | تعداد کاراکترهای کپچا                         |
+| `caseSensitive`   | `boolean`                    | `false`                                                            | آیا اعتبار کپچا حساس به حروف کوچک و بزرگ است؟ |
+| `chars`           | `string`                     | `"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"` | مجموعه کاراکترهای قابل استفاده در کپچا        |
+| `backgroundColor` | `string`                     | `"#f3f4f6"`                                                        | رنگ پس‌زمینه کپچا                             |
+| `noiseDensity`    | `number`                     | `100`                                                              | میزان تراکم نویز روی کپچا                     |
+| `lineCount`       | `number`                     | `5`                                                                | تعداد خطوط تصادفی در کپچا                     |
+| `font`            | `string`                     | `"Arial"`                                                          | فونت استفاده‌شده برای متن کپچا                |
+| `canvasWidth`     | `number`                     | `220`                                                              | عرض بوم کپچا                                  |
+| `canvasHeight`    | `number`                     | `50`                                                               | ارتفاع بوم کپچا                               |
+| `padding`         | `number`                     | `10`                                                               | فاصله اطراف متن کپچا                          |
 
 #### مثال‌ها
 
-##### 1. تغییر تعداد کاراکترهای کپچا
+##### 1. تنظیم تعداد کاراکترهای کپچا
 
 ```tsx
-<Captcha length={4} onVerify={(isValid) => console.log(isValid)} />
+<Captcha charCount={4} onChange={(isValid) => console.log(isValid)} />
 ```
 
-##### 2. تغییر تم به حالت تاریک
+##### 2. تغییر رنگ پس‌زمینه
 
 ```tsx
-<Captcha theme="dark" />
+<Captcha backgroundColor="#000000" />
 ```
 
-##### 3. بررسی مقدار ورودی
+##### 3. فعال‌سازی اعتبار حساس به حروف کوچک و بزرگ
 
 ```tsx
-<Captcha onVerify={(isValid) => alert(isValid ? "درست است!" : "اشتباه است!")} />
+<Captcha caseSensitive={true} />
+```
+
+##### 4. تنظیم تراکم نویز و خطوط
+
+```tsx
+<Captcha noiseDensity={200} lineCount={10} />
+```
+
+##### 5. سفارشی‌سازی فونت و فاصله‌گذاری
+
+```tsx
+<Captcha font="Courier New" padding={20} />
 ```
 
 ---
@@ -198,22 +238,3 @@ export default App;
 ```sh
 npm test
 ```
-
----
-
-### 📜 مجوز
-
-این پکیج تحت **MIT** منتشر شده است.
-
----
-
-### 🤝 مشارکت در پروژه
-
-اگر می‌خواهید در توسعه این پروژه کمک کنید، لطفاً یک **Pull Request** ارسال کنید!
-
----
-
-### 📞 ارتباط با ما
-
-- **ایمیل:** behnambashiri80@gmail.com
-- **گیت‌هاب:** [Behnam-Bashiri](https://github.com/Behnam-Bashiri)
